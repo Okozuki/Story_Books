@@ -1,12 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const keys = require('./config/keys');
+const passport = require('passport');
+
+// Passport Config
+require('./config/passport')(passport);
+
+// Load Routes
+const auth = require('./routes/auth');
+
 
 const app = express();
 
 // Connect to mongoose
-const uri = "mongodb+srv://okozuki:amFIfVhiIFqp9ULV@cluster0-mjq78.gcp.mongodb.net/storybooks-db?retryWrites=true&w=majority";
-
-mongoose.connect(uri, {
+mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true
 })
   .then(() => console.log('MongoDB Connected...'))
@@ -15,8 +22,13 @@ mongoose.connect(uri, {
 
 
 app.get('/', (req, res) => {
-  res.send('It works!!')
+  res.send('It works!!');
 });
+
+
+// Use Routes
+app.use('/auth', auth);
+
 
 const port = process.env.PORT || 5000;
 
