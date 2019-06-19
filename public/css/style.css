@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.page-footer {
+  padding: 0;
+}
+
+.story-text {
+  max-height: 250px;
+}
+
+.dash-status {
+  text-transform: capitalize;
+}
+
+.buttons {
+  float: right;
+}
+
+#delete-form {
+  display: inline-block;
+}
